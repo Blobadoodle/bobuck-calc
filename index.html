@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bobuck Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+    <div class="bg-dark-subtle container-md position-absolute top-50 start-50 translate-middle border border-2 border-secondary rounded-4">
+        <h1 class="text-center">Bobuck Calculator</h1>
+        <p>Calculate Bobuck prices when using gamepassess/shirts as payment. All numbers are rounded to highest integer.</p>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="beforeTax">Before Tax</label>
+            <input class="form-control" type="number" name="beforeTax" id="beforeTax" step="any">
+            <label class="input-group-text" for="beforeTax">After Tax</label>
+            <input class="form-control" type="number" name="afterTax" id="afterTax" step="any">
+        </div>
+    </div>
+    <script>
+        const beforeTax = document.querySelector("#beforeTax");
+        const afterTax = document.querySelector("#afterTax");
+
+        function updateAfter() {
+            afterTax.value = beforeTax.value * 0.7;
+        }
+        function updateBefore() {
+            beforeTax.value = afterTax.value / 0.7;
+        }
+
+        beforeTax.addEventListener("keyup", updateAfter);
+        beforeTax.addEventListener("change", updateAfter);
+        afterTax.addEventListener("keyup", updateBefore);
+        afterTax.addEventListener("change", updateBefore);
+
+        document.querySelector("#copyrightYear").innerHTML = new Date().getFullYear();
+    </script>
+    <footer class="position-absolute bottom-0 w-100 text-center text-light">
+        <p>&copy; Blobadoolde 2023-<span id="copyrightYear">2023</span></p>
+    </footer>
+</body>
+</html>
